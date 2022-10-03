@@ -1,25 +1,24 @@
-import logo from './logo.svg';
-import './App.css';
+import './App.sass';
+import theme from './theme/theme';
+import { ThemeProvider } from '@mui/material/styles';
+import {Route, Routes} from 'react-router-dom';
+
+import MessengerPage from './pages/MessengerPage';
+import ProfilePage from './pages/ProfilePage';
+import NotFoundPage from './pages/NotFoundPage';
 
 function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+
+    return (
+            <ThemeProvider theme={theme}>
+                <Routes>
+                    <Route path="/" element={<MessengerPage />} />
+                    <Route path="/messenger/*" element={<MessengerPage />} />
+                    <Route path="/profile/:userId" element={<ProfilePage />} />
+                    <Route path="*" element={<NotFoundPage />} />
+                </Routes>
+            </ThemeProvider>
+    );
 }
 
 export default App;
