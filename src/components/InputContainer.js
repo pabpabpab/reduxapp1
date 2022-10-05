@@ -16,7 +16,7 @@ const InputContainer = () => {
     // объект textInput
     const textInput = useInput('');
 
-    const addMessageWithThunk = (msg, lastMsgId) => (dispatch, getState) => {
+    const addMessageWithThunk = (msg) => (dispatch, getState) => {
         // отправит снова в thunk (или следующий мидлвар),
         // а там т.к. этот экшн не функция, то сразу в редюсер
         dispatch({type: appConst.ADD_MESSAGE, payload: msg});

@@ -7,7 +7,6 @@ import InputContainer from '../components/InputContainer';
 
 import ProfileTitle from '../components/ProfileTitle';
 import AddContact from '../components/AddContact';
-import ZeroComponent from "../components/ZeroComponent";
 
 
 
