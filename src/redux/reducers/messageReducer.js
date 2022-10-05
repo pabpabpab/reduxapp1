@@ -31,7 +31,7 @@ const messageReducer = (state = initialState, action) => {
             return {
                 ...state,
                 messages: newMessages,
-                lastAction: appConst.DELETE_MESSAGES_BY_USER_ID,
+                lastAction: appConst.DELETE_MESSAGE,
             };
         case appConst.DELETE_MESSAGES_BY_USER_ID:
             return {
