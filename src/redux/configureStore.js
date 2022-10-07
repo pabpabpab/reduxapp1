@@ -1,30 +1,38 @@
 import thunk from 'redux-thunk';
 import {applyMiddleware, combineReducers, createStore} from 'redux';
-import { persistStore, persistReducer } from 'redux-persist';
-import storage from 'redux-persist/lib/storage'; // localStorage
+// import { persistStore, persistReducer } from 'redux-persist';
+// import storage from 'redux-persist/lib/storage'; // localStorage
 
 import contactReducer from './reducers/contactReducer';
 import messageReducer from './reducers/messageReducer';
+import flagReducer from './reducers/flagReducer';
+import errorReducer from './reducers/errorReducer';
 
 // создаем объект конфигурации для persist
+/*
 const persistConfig = {
     key: 'root',
     storage,
 }
+*/
 
 const rootReducer = combineReducers({
     contacts: contactReducer,
     messages: messageReducer,
+    flag: flagReducer,
+    error: errorReducer,
 });
 
 // оборачиваем редьюсеры в persist
-const persistedReducer = persistReducer(persistConfig, rootReducer);
+// const persistedReducer = persistReducer(persistConfig, rootReducer);
 
 // создаем store с использованием persistedReducer
-export const store = createStore(persistedReducer, applyMiddleware(thunk));
+// export const store = createStore(persistedReducer, applyMiddleware(thunk));
+
+export const store = createStore(rootReducer, applyMiddleware(thunk));
 
 // создаем persistor
-export const persistor = persistStore(store);
+// export const persistor = persistStore(store);
 
 // const store = createStore(rootReducer, applyMiddleware(thunk));
 

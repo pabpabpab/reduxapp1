@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import {useDispatch, useSelector} from 'react-redux';
-import appConst from '../functions/getConstants';
+import appConst from '../data/constants';
 import {getCorrespondentId} from "../redux/selectors";
 
 const MessageItem = ({ message }) => {
@@ -18,8 +18,8 @@ const MessageItem = ({ message }) => {
     return (
         <div title={message.id} className="message-item">
             <div>
-                {message.nick} пишет:<br/>
-                {message.text}
+                {message.username} пишет:<br/>
+                {message.body}
             </div>
             <button
                 onClick={() => handleDeleteMessage(message.id)}
@@ -34,9 +34,9 @@ MessageItem.propTypes = {
     message: PropTypes.shape({
         id: PropTypes.number.isRequired,
         userId: PropTypes.number,
-        toUserId: PropTypes.number.isRequired,
-        nick: PropTypes.string.isRequired,
-        text: PropTypes.string.isRequired,
+        username: PropTypes.string.isRequired,
+        toUserId: PropTypes.number,
+        body: PropTypes.string.isRequired,
     }),
 }
 

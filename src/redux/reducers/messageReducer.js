@@ -1,17 +1,21 @@
-import appConst from './../../functions/getConstants';
-import startMessages from './../../data/messagesFromServer';
-import packMessagesIntoMap from './../../functions/packMessagesIntoMap';
+import appConst from '../../data/constants';
+import packMessagesIntoDepo from '../../functions/packMessagesIntoDepo';
 import addMsgIntoMap from './../../functions/addMsgIntoMap';
 import deleteOneMessageFromMap from './../../functions/deleteOneMessageFromMap';
 
 const initialState = {
-    messages: packMessagesIntoMap(startMessages), // map-структура
+    messages: [],
     lastAction: '',
 };
 
 const messageReducer = (state = initialState, action) => {
     let newMessages;
     switch (action.type) {
+        case appConst.SET_ALL_MESSAGES:
+            return {
+                ...state,
+                messages: packMessagesIntoDepo([...action.payload.messages], [...action.payload.contacts]),
+            };
         case appConst.ADD_MESSAGE:
             newMessages = addMsgIntoMap(state, action);
             return {
@@ -34,9 +38,11 @@ const messageReducer = (state = initialState, action) => {
                 lastAction: appConst.DELETE_MESSAGE,
             };
         case appConst.DELETE_MESSAGES_BY_USER_ID:
+            const messages = {...state.messages};
+            delete messages[action.payload];
             return {
                 ...state,
-                messages: state.messages.delete(action.payload),
+                messages: messages,
                 lastAction: appConst.DELETE_MESSAGES_BY_USER_ID,
             };
         default:

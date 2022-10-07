@@ -1,15 +1,15 @@
 const contactsFromServer = [
     {
-        userId: 1,
-        nick: 'Hugo',
+        id: 1,
+        username: 'Hugo',
     },
     {
-        userId: 2,
-        nick: 'Sebastian',
+        id: 2,
+        username: 'Sebastian',
     },
     {
-        userId: 3,
-        nick: 'Ricardo',
+        id: 3,
+        username: 'Ricardo',
     },
 ];
 

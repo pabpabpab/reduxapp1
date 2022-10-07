@@ -1,6 +1,6 @@
 import React from 'react';
 import {useDispatch} from 'react-redux';
-import appConst from './../functions/getConstants';
+import appConst from '../data/constants';
 import useInput from '../myHooks/useInput';
 import TextField from '@mui/material/TextField';
 import Button from '@mui/material/Button';

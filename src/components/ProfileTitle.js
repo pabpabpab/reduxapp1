@@ -9,7 +9,7 @@ export default function ProfileTitle() {
     const correspondentId = useSelector(getCorrespondentId);
 
     const user = useMemo(
-        () => contacts.find((item) => item.userId === correspondentId),
+        () => contacts.find((item) => item.id === correspondentId),
         [contacts, correspondentId]
     );
 
@@ -26,7 +26,7 @@ export default function ProfileTitle() {
             <Link
                 to={`/profile/${correspondentId}`}
                 className={'link-profile'}>
-                {user.nick}
+                {user.username}
             </Link>
         </div>
     );

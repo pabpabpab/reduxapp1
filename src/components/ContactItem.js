@@ -3,7 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import CustomLink from './CustomLink';
 import PropTypes from 'prop-types';
 import {useDispatch} from 'react-redux';
-import appConst from './../functions/getConstants';
+import appConst from '../data/constants';
 
 const ContactItem = ({ contact }) => {
     const dispatch = useDispatch();
@@ -18,11 +18,11 @@ const ContactItem = ({ contact }) => {
 
     return (
         <div className={'contact-item'}>
-            <CustomLink to={`/messenger/chat/${contact.userId}`}>
-                {contact.nick}
+            <CustomLink to={`/messenger/chat/${contact.id}`}>
+                {contact.username}
             </CustomLink>
             <button
-                onClick={() => handleDeleteContact(contact.userId)}
+                onClick={() => handleDeleteContact(contact.id)}
                 className={'contact-item__delete-button'}>
                 &#10006;
             </button>
@@ -31,9 +31,9 @@ const ContactItem = ({ contact }) => {
 };
 
 ContactItem.propTypes = {
-    message: PropTypes.shape({
-        userId: PropTypes.number.isRequired,
-        nick: PropTypes.string.isRequired,
+    contact: PropTypes.shape({
+        id: PropTypes.number.isRequired,
+        username: PropTypes.string.isRequired,
     }),
 }
 

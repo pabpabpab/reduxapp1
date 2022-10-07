@@ -1,6 +1,6 @@
 const myData = {
-    userId: 5,
-    nick: 'Bruno',
+    id: 777,
+    username: 'Bruno',
 };
 
 export default myData;

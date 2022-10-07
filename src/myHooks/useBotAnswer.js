@@ -1,5 +1,5 @@
 import {useEffect, useMemo, useState} from 'react';
-import appConst from './../functions/getConstants';
+import appConst from '../data/constants';
 import {useDispatch, useSelector} from 'react-redux';
 import {getChatById, getCorrespondentId, getLastAction, getLastMsgId, getMsgCount} from '../redux/selectors';
 import usePrevious from './usePrevious';

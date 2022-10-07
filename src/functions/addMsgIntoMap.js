@@ -1,4 +1,16 @@
 export default function addMsgIntoMap(state, action) {
+    const depo = state.messages;
+    const msg = action.payload;
+    const key = msg.toUserId;
+    if (!depo.hasOwnProperty(key)) {
+        depo[key] = [];
+    }
+    depo[key].push(msg);
+    return {...depo};
+};
+
+/*
+export default function addMsgIntoMap(state, action) {
     const map = state.messages;
     const msg = action.payload;
     const key = msg.toUserId;
@@ -10,3 +22,4 @@ export default function addMsgIntoMap(state, action) {
         return map.set(key, [msg]);
     }
 };
+ */

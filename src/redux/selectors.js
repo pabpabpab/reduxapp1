@@ -1,3 +1,11 @@
+export function getLoadingFlag(state) {
+    return state.flag.loading;
+}
+
+export function getError(state) {
+    return state.error.error;
+}
+
 export function getContacts(state) {
     return state.contacts.contacts;
 }
@@ -5,7 +13,7 @@ export function getContacts(state) {
 export function getOneContact(userId) {
     return (state) => {
         const contacts = state.contacts.contacts;
-        return contacts.find((item) => item.userId === userId);
+        return contacts.find((item) => item.id === userId);
     }
 }
 
@@ -19,11 +27,51 @@ export function getLastAction(state) {
 
 export function getChatById(correspondentId) {
     return (state) => {
+        const depo = state.messages.messages;
+        const key = +correspondentId;
+        return depo.hasOwnProperty(key) ? [...depo[key]] : [];
+    }
+}
+
+export function getLastMsgId(state) {
+    const depo = state?.messages?.messages;
+
+    if (!depo) {
+        return 0;
+    }
+
+    const allMsg = [].concat(...Object.values(depo));
+
+    let objectWithMaxId = allMsg.reduce(function(prev, cur) {
+        return cur.id > prev.id ? cur : prev;
+    },  {id: -1});
+
+    return objectWithMaxId.id;
+}
+
+export function getMsgCount(state) {
+    const depo = state?.messages?.messages;
+
+    if (!depo) {
+        return 0;
+    }
+
+    const allMsg = [].concat(...Object.values(depo));
+
+    return allMsg.length;
+}
+
+
+/*
+export function getChatById(correspondentId) {
+    return (state) => {
         const map = state.messages.messages;
         const key = +correspondentId;
         return map.has(key) ? map.get(key) : [];
     }
 }
+ */
+/*
 
 export function getLastMsgId(state) {
     const map = state?.messages?.messages;
@@ -48,6 +96,7 @@ export function getLastMsgId(state) {
     return objectWithMaxId.id;
 }
 
+
 export function getMsgCount(state) {
     const map = state?.messages?.messages;
 
@@ -66,3 +115,4 @@ export function getMsgCount(state) {
 
     return allMsg.length;
 }
+*/

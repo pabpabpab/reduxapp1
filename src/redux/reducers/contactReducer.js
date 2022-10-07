@@ -1,4 +1,4 @@
-import appConst from './../../functions/getConstants';
+import appConst from '../../data/constants';
 import startContacts from './../../data/contactsFromServer';
 
 const initialState = {
@@ -8,15 +8,20 @@ const initialState = {
 
 const contactReducer = (state = initialState, action) => {
     switch (action.type) {
+        case appConst.SET_ALL_CONTACTS:
+            return {
+                ...state,
+                contacts: [...action.payload],
+            };
         case appConst.DELETE_CONTACT:
             return {
                 ...state,
-                contacts: state.contacts.filter((item) => item.userId !== action.payload),
+                contacts: state.contacts.filter((item) => item.id !== action.payload),
             };
         case appConst.ADD_CONTACT:
             const newContact = {
-                userId: Date.now(),
-                nick: action.payload,
+                id: Date.now(),
+                username: action.payload,
             };
             return {
                 ...state,

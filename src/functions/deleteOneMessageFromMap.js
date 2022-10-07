@@ -1,4 +1,16 @@
 export default function deleteOneMessageFromMap(state, action) {
+    const depo = state.messages;
+    const {msgId, correspondentId} = action.payload;
+    const key = correspondentId;
+    if (depo.hasOwnProperty(key)) {
+        const newValue = depo[key].filter((item) => item.id !== msgId);
+        depo[key] = [...newValue];
+    }
+    return {...depo};
+};
+
+/*
+export default function deleteOneMessageFromMap(state, action) {
     const map = state.messages;
     const {msgId, correspondentId} = action.payload;
     const key = correspondentId;
@@ -9,3 +21,4 @@ export default function deleteOneMessageFromMap(state, action) {
     }
     return map.get(key);
 };
+ */

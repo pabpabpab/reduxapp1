@@ -17,7 +17,7 @@ const Contacts = () => {
                     return (
                         <ContactItem
                             contact={contact}
-                            key={contact.userId}
+                            key={contact.id}
                         />
                     )
                 })

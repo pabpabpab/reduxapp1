@@ -4,7 +4,7 @@ import {useDispatch, useSelector} from 'react-redux';
 import { getChatById } from './../redux/selectors';
 
 import MessageItem from './MessageItem';
-import appConst from '../functions/getConstants';
+import appConst from '../data/constants';
 
 const Messages = () => {
     const { chatId } = useParams();
@@ -26,7 +26,6 @@ const Messages = () => {
     const chatDivRef = useRef(null);
     // пусть всегда div сообщений будет проскроллен вниз
     useEffect(() => {chatDivRef.current.scrollTop += 1000;});
-
 
     if (messages === undefined || messages === null) {
         return (
@@ -51,7 +50,7 @@ const Messages = () => {
     return (
         <div ref={chatDivRef} className="messages">
             {
-                messages?.map((message) => <MessageItem message={message} key={message.id} />)
+                messages.map((message) => <MessageItem message={message} key={message.id} />)
             }
         </div>
     );
